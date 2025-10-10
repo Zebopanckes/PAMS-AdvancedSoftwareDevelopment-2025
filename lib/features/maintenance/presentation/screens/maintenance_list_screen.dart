@@ -16,7 +16,7 @@ class MaintenanceListScreen extends StatelessWidget {
             Icon(
               Icons.build,
               size: 80,
-              color: Colors.grey[400],
+              color: const Color(0xFFF97316), // Bright Orange
             ),
             const SizedBox(height: 16),
             Text(
@@ -27,7 +27,7 @@ class MaintenanceListScreen extends StatelessWidget {
             Text(
               'Coming Soon',
               style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                    color: Colors.grey[600],
+                    color: const Color(0xFF6B7280), // Text Secondary
                   ),
             ),
           ],

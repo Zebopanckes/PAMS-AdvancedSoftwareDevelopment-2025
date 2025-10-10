@@ -16,7 +16,7 @@ class PaymentsListScreen extends StatelessWidget {
             Icon(
               Icons.payment,
               size: 80,
-              color: Colors.grey[400],
+              color: const Color(0xFFFBBF24), // Vibrant Yellow
             ),
             const SizedBox(height: 16),
             Text(
@@ -27,7 +27,7 @@ class PaymentsListScreen extends StatelessWidget {
             Text(
               'Coming Soon',
               style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                    color: Colors.grey[600],
+                    color: const Color(0xFF6B7280), // Text Secondary
                   ),
             ),
           ],

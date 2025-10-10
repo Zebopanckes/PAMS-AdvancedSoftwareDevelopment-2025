@@ -34,7 +34,7 @@ class StatCard extends StatelessWidget {
                   child: Text(
                     title,
                     style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                          color: Colors.grey[600],
+                          color: const Color(0xFF6B7280), // Text Secondary
                         ),
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,

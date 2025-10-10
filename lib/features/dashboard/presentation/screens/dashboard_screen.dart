@@ -67,7 +67,7 @@ class DashboardScreen extends StatelessWidget {
             Text(
               'Here\'s what\'s happening with your properties today.',
               style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                    color: Colors.grey[600],
+                    color: const Color(0xFF6B7280), // Text Secondary
                   ),
             )
                 .animate()
@@ -86,28 +86,28 @@ class DashboardScreen extends StatelessWidget {
                   title: 'Total Apartments',
                   value: '48',
                   icon: Icons.apartment,
-                  color: Color(0xFF386641), // Hunter Green
+                  color: Color(0xFF2563EB), // Calm Blue
                   delay: 200,
                 ),
                 StatCard(
                   title: 'Occupied',
                   value: '42',
                   icon: Icons.check_circle,
-                  color: Color(0xFF6A994E), // Asparagus
+                  color: Color(0xFF10B981), // Success Green
                   delay: 300,
                 ),
                 StatCard(
                   title: 'Pending Payments',
                   value: '12',
                   icon: Icons.payment,
-                  color: Color(0xFFA7C957), // Yellow Green
+                  color: Color(0xFFFBBF24), // Vibrant Yellow
                   delay: 400,
                 ),
                 StatCard(
                   title: 'Maintenance',
                   value: '5',
                   icon: Icons.build,
-                  color: Color(0xFFBC4749), // Bittersweet Shimmer - contrasting red tone
+                  color: Color(0xFFF97316), // Bright Orange
                   delay: 500,
                 ),
               ],
@@ -135,35 +135,35 @@ class DashboardScreen extends StatelessWidget {
                 DashboardCard(
                   title: 'Tenants',
                   icon: Icons.people,
-                  color: Colors.blue,
+                  color: const Color(0xFF3B82F6), // Mid Blue
                   onTap: () => Navigator.of(context).pushNamed(AppRoutes.tenants),
                   delay: 700,
                 ),
                 DashboardCard(
                   title: 'Apartments',
                   icon: Icons.apartment,
-                  color: Colors.green,
+                  color: const Color(0xFF2563EB), // Calm Blue
                   onTap: () => Navigator.of(context).pushNamed(AppRoutes.apartments),
                   delay: 800,
                 ),
                 DashboardCard(
                   title: 'Payments',
                   icon: Icons.payment,
-                  color: Colors.orange,
+                  color: const Color(0xFFFBBF24), // Vibrant Yellow
                   onTap: () => Navigator.of(context).pushNamed(AppRoutes.payments),
                   delay: 900,
                 ),
                 DashboardCard(
                   title: 'Maintenance',
                   icon: Icons.build,
-                  color: Colors.red,
+                  color: const Color(0xFFF97316), // Bright Orange
                   onTap: () => Navigator.of(context).pushNamed(AppRoutes.maintenance),
                   delay: 1000,
                 ),
                 DashboardCard(
                   title: 'Reports',
                   icon: Icons.assessment,
-                  color: Colors.purple,
+                  color: const Color(0xFF60A5FA), // Light Blue
                   onTap: () {
                     ScaffoldMessenger.of(context).showSnackBar(
                       const SnackBar(content: Text('Reports coming soon!')),
@@ -174,7 +174,7 @@ class DashboardScreen extends StatelessWidget {
                 DashboardCard(
                   title: 'Settings',
                   icon: Icons.settings,
-                  color: Colors.grey,
+                  color: const Color(0xFF6B7280), // Text Secondary (Grey)
                   onTap: () {
                     ScaffoldMessenger.of(context).showSnackBar(
                       const SnackBar(content: Text('Settings coming soon!')),
