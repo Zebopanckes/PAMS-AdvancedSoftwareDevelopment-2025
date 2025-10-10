@@ -42,7 +42,7 @@ class StatCard extends StatelessWidget {
                 ),
                 CircleAvatar(
                   radius: 20,
-                  backgroundColor: color.withValues(alpha: 0.1),
+                  backgroundColor: color.withValues(alpha: 0.2),
                   child: Icon(
                     icon,
                     color: color,

@@ -286,9 +286,9 @@ class AuroraPainter extends CustomPainter {
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
           colors: [
-            waveColor.withOpacity(baseAlpha * blend),
-            waveColor.withOpacity(baseAlpha * blend * 0.5),
-            waveColor.withOpacity(0),
+            waveColor.withValues(alpha: baseAlpha * blend),
+            waveColor.withValues(alpha: baseAlpha * blend * 0.5),
+            waveColor.withValues(alpha: 0),
           ],
           stops: const [0.0, 0.5, 1.0],
         );
@@ -307,9 +307,9 @@ class AuroraPainter extends CustomPainter {
       begin: Alignment.topLeft,
       end: Alignment.bottomRight,
       colors: [
-        colorStops[0].withOpacity(0.1),
+        colorStops[0].withValues(alpha: 0.1),
         Colors.transparent,
-        colorStops[2].withOpacity(0.1),
+        colorStops[2].withValues(alpha: 0.1),
       ],
       stops: const [0.0, 0.5, 1.0],
     );

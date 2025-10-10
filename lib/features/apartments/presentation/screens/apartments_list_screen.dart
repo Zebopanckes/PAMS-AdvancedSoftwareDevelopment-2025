@@ -13,10 +13,10 @@ class ApartmentsListScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(
+            const Icon(
               Icons.apartment,
               size: 80,
-              color: const Color(0xFF2563EB), // Calm Blue
+              color: Color(0xFF2563EB), // Calm Blue
             ),
             const SizedBox(height: 16),
             Text(

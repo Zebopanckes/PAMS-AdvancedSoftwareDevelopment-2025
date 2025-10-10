@@ -13,10 +13,10 @@ class PaymentsListScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(
+            const Icon(
               Icons.payment,
               size: 80,
-              color: const Color(0xFFFBBF24), // Vibrant Yellow
+              color: Color(0xFFFBBF24), // Vibrant Yellow
             ),
             const SizedBox(height: 16),
             Text(

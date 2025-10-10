@@ -13,10 +13,10 @@ class MaintenanceListScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(
+            const Icon(
               Icons.build,
               size: 80,
-              color: const Color(0xFFF97316), // Bright Orange
+              color: Color(0xFFF97316), // Bright Orange
             ),
             const SizedBox(height: 16),
             Text(

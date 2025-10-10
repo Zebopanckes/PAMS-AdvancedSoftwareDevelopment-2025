@@ -13,10 +13,10 @@ class TenantsListScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(
+            const Icon(
               Icons.people,
               size: 80,
-              color: const Color(0xFF3B82F6), // Mid Blue
+              color: Color(0xFF3B82F6), // Mid Blue
             ),
             const SizedBox(height: 16),
             Text(

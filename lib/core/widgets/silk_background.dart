@@ -23,7 +23,7 @@ class SilkBackground extends StatefulWidget {
     super.key,
     this.speed = 3.0,
     this.scale = 1.0,
-    this.color = const Color.fromARGB(255, 52, 170, 80)
+    this.color = const Color.fromARGB(255, 52, 170, 80),
     this.noiseIntensity = 0.5,
     this.rotation = 0.0,
   });
@@ -152,14 +152,14 @@ class _SilkPainter extends CustomPainter {
         final double noiseEffect = noise / 15.0 * noiseIntensity;
 
         // Calculate final color
-        final double r = (color.red / 255.0 * pattern - noiseEffect).clamp(0.0, 1.0);
-        final double g = (color.green / 255.0 * pattern - noiseEffect).clamp(0.0, 1.0);
-        final double b = (color.blue / 255.0 * pattern - noiseEffect).clamp(0.0, 1.0);
+        final double r = ((color.r * 255.0).round() & 0xff) / 255.0 * pattern - noiseEffect;
+        final double g = ((color.g * 255.0).round() & 0xff) / 255.0 * pattern - noiseEffect;
+        final double b = ((color.b * 255.0).round() & 0xff) / 255.0 * pattern - noiseEffect;
 
         paint.color = Color.fromRGBO(
-          (r * 255).toInt(),
-          (g * 255).toInt(),
-          (b * 255).toInt(),
+          (r.clamp(0.0, 1.0) * 255).toInt(),
+          (g.clamp(0.0, 1.0) * 255).toInt(),
+          (b.clamp(0.0, 1.0) * 255).toInt(),
           1.0,
         );
 
