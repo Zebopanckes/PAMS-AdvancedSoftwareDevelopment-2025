@@ -1,17 +1,25 @@
 import 'package:flutter/material.dart';
 
 class AppTheme {
-  // Color Palette
-  static const Color primaryColor = Color(0xFF2C3E50);
-  static const Color secondaryColor = Color(0xFF3498DB);
-  static const Color accentColor = Color(0xFF1ABC9C);
-  static const Color errorColor = Color(0xFFE74C3C);
-  static const Color successColor = Color(0xFF2ECC71);
-  static const Color warningColor = Color(0xFFF39C12);
-  static const Color backgroundColor = Color(0xFFF5F6FA);
-  static const Color surfaceColor = Colors.white;
-  static const Color textPrimary = Color(0xFF2C3E50);
-  static const Color textSecondary = Color(0xFF7F8C8D);
+  // Color Palette - Nature-Inspired Earth Tones
+  // Primary colors for main UI elements
+  static const Color hunterGreen = Color(0xFF386641);      // Deep forest green - primary actions
+  static const Color asparagus = Color(0xFF6A994E);         // Medium green - secondary elements
+  static const Color yellowGreen = Color(0xFFA7C957);       // Light green - accents & highlights
+  static const Color parchment = Color(0xFFF2E8CF);         // Warm cream - backgrounds
+  static const Color bittersweetShimmer = Color(0xFFBC4749); // Warm red - errors & warnings
+  
+  // Semantic color assignments for app usage
+  static const Color primaryColor = hunterGreen;            // Main brand color
+  static const Color secondaryColor = asparagus;            // Supporting actions
+  static const Color accentColor = yellowGreen;             // Highlights & emphasis
+  static const Color errorColor = bittersweetShimmer;       // Errors & critical actions
+  static const Color successColor = asparagus;              // Success states
+  static const Color warningColor = Color(0xFFD4A574);      // Derived warm tone for warnings
+  static const Color backgroundColor = parchment;           // Main background
+  static const Color surfaceColor = Color(0xFFFFFBF5);      // Card/surface background (lighter parchment)
+  static const Color textPrimary = hunterGreen;             // Primary text
+  static const Color textSecondary = asparagus;             // Secondary text
 
   // Light Theme
   static ThemeData lightTheme = ThemeData(
@@ -87,16 +95,17 @@ class AppTheme {
     ),
   );
 
-  // Dark Theme
+  // Dark Theme with nature-inspired colors
   static ThemeData darkTheme = ThemeData(
     useMaterial3: true,
     colorScheme: const ColorScheme.dark(
-      primary: secondaryColor,
-      secondary: accentColor,
-      tertiary: accentColor,
-      error: errorColor,
-      surface: Color(0xFF1E1E1E),
+      primary: yellowGreen,
+      secondary: asparagus,
+      tertiary: yellowGreen,
+      error: bittersweetShimmer,
+      surface: Color(0xFF1A2D1F),              // Dark green-tinted surface
+      background: Color(0xFF0F1810),           // Very dark green background
     ),
-    scaffoldBackgroundColor: const Color(0xFF121212),
+    scaffoldBackgroundColor: const Color(0xFF0F1810),
   );
 }

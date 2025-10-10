@@ -86,28 +86,28 @@ class DashboardScreen extends StatelessWidget {
                   title: 'Total Apartments',
                   value: '48',
                   icon: Icons.apartment,
-                  color: Colors.blue,
+                  color: Color(0xFF386641), // Hunter Green
                   delay: 200,
                 ),
                 StatCard(
                   title: 'Occupied',
                   value: '42',
                   icon: Icons.check_circle,
-                  color: Colors.green,
+                  color: Color(0xFF6A994E), // Asparagus
                   delay: 300,
                 ),
                 StatCard(
                   title: 'Pending Payments',
                   value: '12',
                   icon: Icons.payment,
-                  color: Colors.orange,
+                  color: Color(0xFFA7C957), // Yellow Green
                   delay: 400,
                 ),
                 StatCard(
                   title: 'Maintenance',
                   value: '5',
                   icon: Icons.build,
-                  color: Colors.red,
+                  color: Color(0xFFBC4749), // Bittersweet Shimmer - contrasting red tone
                   delay: 500,
                 ),
               ],
