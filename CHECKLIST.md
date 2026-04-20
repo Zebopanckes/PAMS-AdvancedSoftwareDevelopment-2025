@@ -1,5 +1,129 @@
 # PAMS Development Checklist
 
+Tracks spec-to-implementation coverage for UFCF8S-30-2 (Paragon Apartment
+Management System). Items are grouped by the specification's requirement
+areas. All boxes below are completed unless explicitly marked `[ ]`.
+
+## Foundation
+
+- [x] Flutter desktop project (Windows / Linux / macOS via `sqflite_ffi`)
+- [x] `pubspec.yaml` dependencies (Provider, sqflite, pdf, printing, intl,
+      fl_chart, flutter_animate, crypto, uuid)
+- [x] Material 3 theme (`calmBlue` #2563EB / `vibrantYellow` #FBBF24)
+- [x] Route table with 11 named routes and fade transitions
+- [x] `AppShell` navigation rail shared across feature screens
+- [x] SQLite schema v2 covering users, tenants, apartments, leases,
+      invoices, payments, maintenance, complaints, audit logs
+- [x] Seed data for default admin + per-role/per-city demo users
+
+## Authentication & Security
+
+- [x] SHA-256 password hashing
+- [x] Account lockout after 5 failed attempts (15 minute cooldown)
+- [x] 2-hour rolling session timeout
+- [x] Audit log on every login / logout / failed attempt
+- [x] RBAC: `Permission` enum (20 permissions) + 5-role matrix in
+      `lib/core/security/rbac.dart`
+- [x] Role-scoped navigation (items hidden when user lacks permission)
+- [x] Per-city scoping for manager / finance / maintenance / frontDesk users
+
+## Tenant Management (front-desk + admin)
+
+- [x] Tenant list with search, city filter and status filter
+- [x] Tenant form with UK-specific validation
+  - [x] National Insurance number regex `[A-Z]{2}\d{6}[A-D]`
+  - [x] Email + UK phone validators
+  - [x] NI number locked on edit (integrity)
+- [x] Lease period, apartment requirements, references, emergency contact
+- [x] Tenant detail screen: profile + active lease + payments +
+      maintenance + complaints in one view
+- [x] Early termination workflow launched from tenant detail (spec rule:
+      1-month notice, 5% monthly-rent penalty — confirmation dialog shows
+      the calculated amount before committing)
+
+## Apartment Management (admin / manager)
+
+- [x] Grid of apartment cards with status chips (vacant / occupied /
+      under maintenance / reserved)
+- [x] Filters: city, status, minimum bedrooms, free-text search
+- [x] Full CRUD form (city, type, floor, beds, baths, area, rent, status)
+- [x] Permission-gated FAB + delete action
+
+## Lease Management
+
+- [x] Lease list with tenant + apartment resolution, status chips
+- [x] Warning banner for leases expiring within 60 days
+- [x] Lease form filters apartments to vacant-only (service-level guard
+      also present) to prevent double-booking
+- [x] Auto-default end date 12 months after start; rent auto-populated
+      from selected apartment
+- [x] Early termination service method records penalty, termination
+      notice date and flips apartment to vacant
+
+## Billing & Invoicing (finance)
+
+- [x] Tabbed screen: Invoices / Payments
+- [x] Summary cards: total collected, outstanding, invoice count,
+      payment count
+- [x] Issue invoice dialog (lease picker, billing period, due-days)
+- [x] Record payment dialog (amount, method, reference) that reconciles
+      partial → paid status on invoices
+- [x] Mark-overdue pass runs automatically on screen load
+- [x] PDF preview / print for invoices and receipts (Printing package)
+
+## Maintenance Lifecycle
+
+- [x] List with status + priority filters and priority-coloured icons
+- [x] Create request form (apartment, title, description, priority)
+- [x] Assign dialog records assignee + scheduled date (spec: tenant is
+      informed of the scheduled time)
+- [x] Resolve dialog captures notes, hours spent and cost (spec: staff
+      log time for each job)
+- [x] Cost + hour totals surfaced on the reports screen
+
+## Complaints (front-desk)
+
+- [x] List with create dialog (tenant picker, category, description)
+- [x] Logged-by captured from current session user
+- [x] Popup menu on each row changes status; resolved/closed auto-stamps
+      `resolved_date`
+
+## User Administration (admin only)
+
+- [x] Screen gated behind `Permission.manageUsers`
+- [x] DataTable: username, name, role, city, last login, active switch
+- [x] Create-user dialog with role + city dropdowns
+- [x] Reset-password dialog
+- [x] Active toggle via `UserService.setActive`
+
+## Reports (admin / manager / finance)
+
+- [x] Occupancy bar chart (fl_chart) per city with occupied / vacant /
+      under-maintenance rods
+- [x] Occupancy table with occupancy-rate %
+- [x] Financial table: collected vs outstanding per city
+- [x] Maintenance table: request count, hours, cost per city
+
+## Quality & Delivery
+
+- [x] `flutter analyze` — 0 errors (5 informational lints remain)
+- [x] `flutter build windows --debug` — succeeds
+- [x] Unit tests: `test/domain_tests.dart` — validators, lease penalty,
+      RBAC matrix (11 assertions)
+- [x] Unit tests: `test/auth_service_test.dart` — password hashing
+- [x] Seed on first launch via `SeedService().seedIfEmpty()` in `main.dart`
+- [x] Agile methodology write-up (`docs/AGILE_METHODOLOGY.md`)
+- [x] Test-cases deliverable (`docs/TEST_CASES.md`)
+
+## Deferred / Out of Scope
+
+- [ ] Biometric auth (package imported but not wired — desktop target
+      does not provide a reliable biometric provider)
+- [ ] Two-factor auth flow (schema column exists, UI deferred)
+- [ ] Real payment gateway (spec explicitly treats PAMS as a demonstration
+      system; receipts are generated locally)
+# PAMS Development Checklist
+
 ## ✅ Completed - Foundation Phase
 
 ### Project Setup
