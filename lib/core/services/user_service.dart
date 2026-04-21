@@ -2,8 +2,7 @@
 // File: user_service.dart
 // Purpose: Manage staff/user accounts (admin responsibility).
 
-import 'dart:convert';
-import 'package:crypto/crypto.dart';
+import 'package:bcrypt/bcrypt.dart';
 import 'package:uuid/uuid.dart';
 import '../models/user_model.dart';
 import 'database_service.dart';
@@ -11,8 +10,10 @@ import 'database_service.dart';
 class UserService {
   final _uuid = const Uuid();
 
+  static const int _bcryptLogRounds = 12;
+
   String _hash(String password) =>
-      sha256.convert(utf8.encode(password)).toString();
+      BCrypt.hashpw(password, BCrypt.gensalt(logRounds: _bcryptLogRounds));
 
   Future<UserModel> create({
     required String username,

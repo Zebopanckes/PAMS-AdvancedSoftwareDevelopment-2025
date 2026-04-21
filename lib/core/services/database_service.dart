@@ -2,6 +2,7 @@
 // File: database_service.dart
 // Purpose: SQLite database bootstrap and schema management for PAMS.
 
+import 'package:bcrypt/bcrypt.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 
@@ -22,7 +23,11 @@ class DatabaseService {
 
   DatabaseService._init();
 
-  static const int _schemaVersion = 2;
+  // v3: password_hash column migrated from SHA-256 hex digests to bcrypt
+  // (`$2a$12$...`). Incompatible representations, so existing installs must
+  // upgrade — `_onUpgrade` drops and recreates the schema and reseeds the
+  // default administrator with a fresh bcrypt hash.
+  static const int _schemaVersion = 3;
 
   Future<Database> get database async {
     if (_database != null) return _database!;
@@ -253,9 +258,10 @@ class DatabaseService {
 
   Future<void> _createDefaultAdmin(Database db) async {
     final now = DateTime.now().toIso8601String();
-    // Default password: admin123 (SHA-256).
-    const passwordHash =
-        '240be518fabd2724ddb6f04eeb1da5967448d7e831c08c8fa822809f74c720a9';
+    // Default password: admin123 (bcrypt, log2 rounds = 12).
+    // Hashed at first-launch to include a freshly generated per-install salt.
+    final passwordHash =
+        BCrypt.hashpw('admin123', BCrypt.gensalt(logRounds: 12));
 
     await db.insert('users', {
       'id': 'admin-001',

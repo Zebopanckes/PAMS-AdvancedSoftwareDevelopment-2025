@@ -2,8 +2,7 @@
 // File: auth_service.dart
 // Purpose: Authentication, session management and audit logging.
 
-import 'dart:convert';
-import 'package:crypto/crypto.dart';
+import 'package:bcrypt/bcrypt.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:uuid/uuid.dart';
 import '../models/user_model.dart';
@@ -33,8 +32,23 @@ class AuthService {
 
   final _uuid = const Uuid();
 
+  /// bcrypt work factor (log2 rounds). 12 is a conservative desktop default.
+  static const int _bcryptLogRounds = 12;
+
+  /// Produce a salted bcrypt hash of [password].
+  /// Each call returns a different string because of the per-call salt;
+  /// verification is performed with [verifyPassword].
   String hashPassword(String password) =>
-      sha256.convert(utf8.encode(password)).toString();
+      BCrypt.hashpw(password, BCrypt.gensalt(logRounds: _bcryptLogRounds));
+
+  /// Verify a plaintext [password] against a stored bcrypt [hash].
+  bool verifyPassword(String password, String hash) {
+    try {
+      return BCrypt.checkpw(password, hash);
+    } catch (_) {
+      return false;
+    }
+  }
 
   Future<LoginOutcome> login(String username, String password) async {
     try {
@@ -62,10 +76,9 @@ class AuthService {
                 'Account locked until ${user.lockedUntil!.toLocal()}. Try again later.');
       }
 
-      final providedHash = hashPassword(password);
       final storedHash = rows.first['password_hash'] as String;
 
-      if (providedHash != storedHash) {
+      if (!verifyPassword(password, storedHash)) {
         // Increment failed attempts and potentially lock.
         final attempts = user.failedLoginAttempts + 1;
         final update = <String, Object?>{
