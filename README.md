@@ -1,3 +1,133 @@
+# PAMS – Paragon Apartment Management System
+
+A Flutter desktop application for managing a multi-location apartment rental
+business. Built for the Advanced Software Development module.
+
+---
+
+## Project structure
+
+```
+PAMS-AdvancedSoftwareDevelopment-2025/
+├── lib/                  # Dart source (main.dart, core/, features/)
+├── test/                 # Unit and widget tests
+├── windows/              # Windows desktop runner
+├── web/                  # Web entry point
+├── assets/               # Images, icons, animations
+├── docs/                 # Agile methodology, test cases, dev guide
+├── pubspec.yaml          # Dart/Flutter dependency manifest
+└── README.md             # This file
+```
+
+---
+
+## Prerequisites
+
+- Flutter SDK **3.0.0 or newer** (stable channel)
+- For Windows desktop builds: **Visual Studio 2022** with the "Desktop
+  development with C++" workload
+
+Verify the toolchain:
+
+```powershell
+flutter --version
+flutter doctor
+```
+
+---
+
+## Build and run
+
+From the project root (`PAMS-AdvancedSoftwareDevelopment-2025/`):
+
+```powershell
+# 1. Install dependencies
+flutter pub get
+
+# 2. Run the application on Windows desktop
+flutter run -d windows
+```
+
+On first launch the app creates a SQLite database and seeds demonstration data
+(apartments, tenants, leases, invoices, maintenance requests) automatically.
+
+### Running tests
+
+```powershell
+flutter test
+```
+
+---
+
+## Default login accounts
+
+All staff accounts use password `Password123!` unless noted.
+
+| Username             | Role         | Password       |
+|----------------------|--------------|----------------|
+| `admin`              | Admin        | `admin123`     |
+| `manager_bristol`    | Manager      | `Password123!` |
+| `manager_cardiff`    | Manager      | `Password123!` |
+| `manager_london`     | Manager      | `Password123!` |
+| `manager_manchester` | Manager      | `Password123!` |
+| `finance_<city>`     | Finance      | `Password123!` |
+| `maint_<city>`       | Maintenance  | `Password123!` |
+| `front_<city>`       | Front-desk   | `Password123!` |
+
+The full list is also shown on the login screen.
+
+---
+
+## Keyboard shortcuts
+
+- **F11** — toggle fullscreen.
+
+---
+
+## Database
+
+The application stores its data in a SQLite file managed by
+`sqflite_common_ffi`. On Windows the file lives at:
+
+```
+%APPDATA%\com.example.pams\pams.db
+```
+
+To export a SQL dump for submission/inspection, use the SQLite CLI:
+
+```powershell
+sqlite3.exe "$env:APPDATA\com.example.pams\pams.db" .dump > pams_dump.sql
+```
+
+---
+
+## Technology stack
+
+- **Framework:** Flutter (Windows desktop)
+- **Language:** Dart
+- **State management:** Provider
+- **Database:** SQLite (`sqflite` / `sqflite_common_ffi`)
+- **Security:** bcrypt password hashing, role-based access control, audit
+  logging
+- **Reporting:** `pdf`, `printing`, `excel`
+- **Charts:** `fl_chart`, `syncfusion_flutter_charts`
+- **Window management:** `window_manager`
+
+Full dependency list is declared in [`pubspec.yaml`](pubspec.yaml).
+
+---
+
+## Features
+
+- Role-based authentication (Admin, Manager, Finance, Maintenance, Front-desk)
+- Tenant, apartment, lease, invoice, payment, maintenance and complaints
+  management
+- City management — managers can expand the business into new cities at
+  runtime
+- Dashboards with per-city statistics and charts
+- Reports with PDF/Excel export
+- Seed data for rapid demo/evaluation
+- Audit log of security-relevant actions
 # Paragon Apartment Management System (PAMS)
 
 ## ✅ Project Status: Foundation Complete - Ready for Feature Development
