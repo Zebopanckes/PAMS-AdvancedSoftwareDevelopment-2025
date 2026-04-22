@@ -198,11 +198,25 @@ class _LoginScreenState extends State<LoginScreen> {
                             .scale(delay: 600.ms),
                         const SizedBox(height: 16),
                         Text(
-                          'Default credentials: admin / admin123',
-                          style: Theme.of(context).textTheme.bodySmall,
+                          'Demo accounts (password: Password123! unless noted)',
+                          style: Theme.of(context).textTheme.bodySmall
+                              ?.copyWith(fontWeight: FontWeight.w600),
+                          textAlign: TextAlign.center,
                         )
                             .animate()
                             .fadeIn(delay: 700.ms),
+                        const SizedBox(height: 4),
+                        Text(
+                          'admin / admin123\n'
+                          'Managers: manager_bristol, manager_cardiff, manager_london, manager_manchester\n'
+                          'Finance: finance_bristol, finance_cardiff, finance_london, finance_manchester\n'
+                          'Maintenance: maint_bristol, maint_cardiff, maint_london, maint_manchester\n'
+                          'Front-desk: front_bristol, front_cardiff, front_london, front_manchester',
+                          style: Theme.of(context).textTheme.bodySmall,
+                          textAlign: TextAlign.center,
+                        )
+                            .animate()
+                            .fadeIn(delay: 750.ms),
                       ],
                     ),
                   ),

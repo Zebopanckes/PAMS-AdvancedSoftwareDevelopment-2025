@@ -27,7 +27,7 @@ class DatabaseService {
   // (`$2a$12$...`). Incompatible representations, so existing installs must
   // upgrade — `_onUpgrade` drops and recreates the schema and reseeds the
   // default administrator with a fresh bcrypt hash.
-  static const int _schemaVersion = 3;
+  static const int _schemaVersion = 4;
 
   Future<Database> get database async {
     if (_database != null) return _database!;
@@ -62,6 +62,7 @@ class DatabaseService {
       'apartments',
       'tenants',
       'users',
+      'cities',
     ];
     for (final t in tables) {
       await db.execute('DROP TABLE IF EXISTS $t');
@@ -245,6 +246,17 @@ class DatabaseService {
         timestamp TEXT NOT NULL
       )
     ''');
+
+    await db.execute('''
+      CREATE TABLE cities (
+        name TEXT PRIMARY KEY,
+        created_at TEXT NOT NULL
+      )
+    ''');
+    final nowCities = DateTime.now().toIso8601String();
+    for (final c in const ['Bristol', 'Cardiff', 'London', 'Manchester']) {
+      await db.insert('cities', {'name': c, 'created_at': nowCities});
+    }
 
     await db.execute('CREATE INDEX idx_tenants_city ON tenants(city)');
     await db.execute('CREATE INDEX idx_apartments_city ON apartments(city)');

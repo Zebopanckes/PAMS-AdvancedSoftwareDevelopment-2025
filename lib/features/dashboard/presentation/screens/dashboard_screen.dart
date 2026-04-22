@@ -210,6 +210,15 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         .pushNamed(AppRoutes.users),
                     delay: 900,
                   ),
+                if (Rbac.can(user, Permission.expandBusiness))
+                  DashboardCard(
+                    title: 'Cities',
+                    icon: Icons.location_city,
+                    color: const Color(0xFF0EA5E9),
+                    onTap: () => Navigator.of(context)
+                        .pushNamed(AppRoutes.cities),
+                    delay: 950,
+                  ),
               ],
             ),
           ],

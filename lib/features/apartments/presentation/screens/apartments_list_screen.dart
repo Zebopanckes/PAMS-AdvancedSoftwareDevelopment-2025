@@ -8,6 +8,7 @@ import 'package:provider/provider.dart';
 import '../../../../core/models/apartment_model.dart';
 import '../../../../core/security/rbac.dart';
 import '../../../../core/services/apartment_service.dart';
+import '../../../../core/services/city_service.dart';
 import '../../../../core/widgets/app_shell.dart';
 import '../../../auth/presentation/providers/auth_provider.dart';
 import 'apartment_form_screen.dart';
@@ -26,11 +27,16 @@ class _ApartmentsListScreenState extends State<ApartmentsListScreen> {
   ApartmentStatus? _statusFilter;
   int? _minBedrooms;
   Future<List<ApartmentModel>>? _future;
+  List<String> _cities = const ['Bristol', 'Cardiff', 'London', 'Manchester'];
 
   @override
   void initState() {
     super.initState();
     _reload();
+    CityService().list().then((list) {
+      if (!mounted || list.isEmpty) return;
+      setState(() => _cities = list);
+    });
   }
 
   void _reload() {
@@ -121,12 +127,11 @@ class _ApartmentsListScreenState extends State<ApartmentsListScreen> {
         DropdownButton<String?>(
           value: _cityFilter,
           hint: const Text('All cities'),
-          items: const [
-            DropdownMenuItem(value: null, child: Text('All cities')),
-            DropdownMenuItem(value: 'Bristol', child: Text('Bristol')),
-            DropdownMenuItem(value: 'Cardiff', child: Text('Cardiff')),
-            DropdownMenuItem(value: 'London', child: Text('London')),
-            DropdownMenuItem(value: 'Manchester', child: Text('Manchester')),
+          items: [
+            const DropdownMenuItem(value: null, child: Text('All cities')),
+            ..._cities.map(
+              (c) => DropdownMenuItem(value: c, child: Text(c)),
+            ),
           ],
           onChanged: (v) {
             setState(() => _cityFilter = v);

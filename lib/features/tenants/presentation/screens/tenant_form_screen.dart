@@ -4,6 +4,7 @@
 
 import 'package:flutter/material.dart';
 import '../../../../core/models/tenant_model.dart';
+import '../../../../core/services/city_service.dart';
 import '../../../../core/services/tenant_service.dart';
 
 class TenantFormScreen extends StatefulWidget {
@@ -30,6 +31,7 @@ class _TenantFormScreenState extends State<TenantFormScreen> {
   String _city = 'Bristol';
   TenantStatus _status = TenantStatus.prospective;
   bool _saving = false;
+  List<String> _cities = const ['Bristol', 'Cardiff', 'London', 'Manchester'];
 
   @override
   void initState() {
@@ -49,6 +51,13 @@ class _TenantFormScreenState extends State<TenantFormScreen> {
       _city = t.city;
       _status = t.status;
     }
+    CityService().list().then((list) {
+      if (!mounted || list.isEmpty) return;
+      setState(() {
+        _cities = list;
+        if (!_cities.contains(_city)) _city = _cities.first;
+      });
+    });
   }
 
   @override
@@ -104,12 +113,27 @@ class _TenantFormScreenState extends State<TenantFormScreen> {
       if (mounted) Navigator.of(context).pop(true);
     } catch (e) {
       if (mounted) {
+        final msg = _friendlyError(e);
         ScaffoldMessenger.of(context)
-            .showSnackBar(SnackBar(content: Text('$e')));
+            .showSnackBar(SnackBar(content: Text(msg)));
       }
     } finally {
       if (mounted) setState(() => _saving = false);
     }
+  }
+
+  String _friendlyError(Object e) {
+    final raw = e.toString();
+    if (e is ArgumentError) return e.message?.toString() ?? raw;
+    if (e is StateError) return e.message;
+    // Database unique-constraint fallback (older paths or other unique cols).
+    if (raw.contains('UNIQUE constraint failed: tenants.ni_number')) {
+      return 'A tenant with this NI number already exists.';
+    }
+    if (raw.contains('UNIQUE constraint failed')) {
+      return 'This record conflicts with an existing entry.';
+    }
+    return raw;
   }
 
   @override
@@ -149,16 +173,15 @@ class _TenantFormScreenState extends State<TenantFormScreen> {
               _row([
                 _field(_occupation, 'Occupation'),
                 DropdownButtonFormField<String>(
-                  initialValue: _city,
+                  initialValue:
+                      _cities.contains(_city) ? _city : _cities.first,
                   decoration: const InputDecoration(labelText: 'City *'),
-                  items: const [
-                    DropdownMenuItem(value: 'Bristol', child: Text('Bristol')),
-                    DropdownMenuItem(value: 'Cardiff', child: Text('Cardiff')),
-                    DropdownMenuItem(value: 'London', child: Text('London')),
-                    DropdownMenuItem(
-                        value: 'Manchester', child: Text('Manchester')),
-                  ],
-                  onChanged: (v) => setState(() => _city = v ?? 'Bristol'),
+                  items: _cities
+                      .map((c) =>
+                          DropdownMenuItem(value: c, child: Text(c)))
+                      .toList(),
+                  onChanged: (v) =>
+                      setState(() => _city = v ?? _cities.first),
                 ),
               ]),
               _row([

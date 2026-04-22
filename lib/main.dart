@@ -5,8 +5,10 @@
 
 import 'dart:io' show Platform;
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
+import 'package:window_manager/window_manager.dart';
 
 import 'core/routes/app_routes.dart';
 import 'core/services/auth_service.dart';
@@ -22,6 +24,15 @@ Future<void> main() async {
   if (Platform.isWindows || Platform.isLinux || Platform.isMacOS) {
     sqfliteFfiInit();
     databaseFactory = databaseFactoryFfi;
+  }
+
+  // Initialise window manager for desktop fullscreen support.
+  if (Platform.isWindows || Platform.isLinux || Platform.isMacOS) {
+    await windowManager.ensureInitialized();
+    await windowManager.waitUntilReadyToShow(null, () async {
+      await windowManager.show();
+      await windowManager.focus();
+    });
   }
 
   // Prime the database.
@@ -46,14 +57,25 @@ class PAMSApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (_) => AuthProvider(AuthService())),
       ],
-      child: MaterialApp(
-        title: 'PAMS – Paragon Apartment Management System',
-        theme: AppTheme.lightTheme,
-        darkTheme: AppTheme.darkTheme,
-        themeMode: ThemeMode.light,
-        initialRoute: AppRoutes.splash,
-        onGenerateRoute: AppRoutes.onGenerateRoute,
-        debugShowCheckedModeBanner: false,
+      child: KeyboardListener(
+        focusNode: FocusNode(),
+        autofocus: true,
+        onKeyEvent: (event) async {
+          if (event is KeyDownEvent &&
+              event.logicalKey == LogicalKeyboardKey.f11) {
+            final isFullScreen = await windowManager.isFullScreen();
+            await windowManager.setFullScreen(!isFullScreen);
+          }
+        },
+        child: MaterialApp(
+          title: 'PAMS – Paragon Apartment Management System',
+          theme: AppTheme.lightTheme,
+          darkTheme: AppTheme.darkTheme,
+          themeMode: ThemeMode.light,
+          initialRoute: AppRoutes.splash,
+          onGenerateRoute: AppRoutes.onGenerateRoute,
+          debugShowCheckedModeBanner: false,
+        ),
       ),
     );
   }

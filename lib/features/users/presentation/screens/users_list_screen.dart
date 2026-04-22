@@ -7,6 +7,7 @@ import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import '../../../../core/models/user_model.dart';
 import '../../../../core/security/rbac.dart';
+import '../../../../core/services/city_service.dart';
 import '../../../../core/services/user_service.dart';
 import '../../../../core/widgets/app_shell.dart';
 import '../../../auth/presentation/providers/auth_provider.dart';
@@ -20,7 +21,9 @@ class UsersListScreen extends StatefulWidget {
 
 class _UsersListScreenState extends State<UsersListScreen> {
   final _service = UserService();
+  final _cityService = CityService();
   List<UserModel> _users = [];
+  List<String> _cities = const ['Bristol', 'Cardiff', 'London', 'Manchester'];
   bool _loading = true;
   static final _date = DateFormat('dd MMM yyyy HH:mm');
 
@@ -28,6 +31,10 @@ class _UsersListScreenState extends State<UsersListScreen> {
   void initState() {
     super.initState();
     _load();
+    _cityService.list().then((list) {
+      if (!mounted || list.isEmpty) return;
+      setState(() => _cities = list);
+    });
   }
 
   Future<void> _load() async {
@@ -82,13 +89,11 @@ class _UsersListScreenState extends State<UsersListScreen> {
               DropdownButtonFormField<String?>(
                 initialValue: city,
                 decoration: const InputDecoration(labelText: 'City'),
-                items: const [
-                  DropdownMenuItem(value: null, child: Text('No city')),
-                  DropdownMenuItem(value: 'Bristol', child: Text('Bristol')),
-                  DropdownMenuItem(value: 'Cardiff', child: Text('Cardiff')),
-                  DropdownMenuItem(value: 'London', child: Text('London')),
-                  DropdownMenuItem(
-                      value: 'Manchester', child: Text('Manchester')),
+                items: [
+                  const DropdownMenuItem(value: null, child: Text('No city')),
+                  ..._cities.map(
+                    (c) => DropdownMenuItem(value: c, child: Text(c)),
+                  ),
                 ],
                 onChanged: (v) => setLocal(() => city = v),
               ),

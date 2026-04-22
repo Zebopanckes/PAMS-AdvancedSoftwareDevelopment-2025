@@ -14,6 +14,7 @@ import '../../features/maintenance/presentation/screens/maintenance_list_screen.
 import '../../features/complaints/presentation/screens/complaints_list_screen.dart';
 import '../../features/users/presentation/screens/users_list_screen.dart';
 import '../../features/reports/presentation/screens/reports_screen.dart';
+import '../../features/cities/presentation/screens/cities_list_screen.dart';
 
 class AppRoutes {
   static const String splash = '/';
@@ -27,6 +28,7 @@ class AppRoutes {
   static const String complaints = '/complaints';
   static const String reports = '/reports';
   static const String users = '/users';
+  static const String cities = '/cities';
 
   static Route<dynamic> onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -52,6 +54,8 @@ class AppRoutes {
         return _buildRoute(const ReportsScreen(), settings);
       case users:
         return _buildRoute(const UsersListScreen(), settings);
+      case cities:
+        return _buildRoute(const CitiesListScreen(), settings);
       default:
         return _buildRoute(
           Scaffold(

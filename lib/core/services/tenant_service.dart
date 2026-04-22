@@ -36,9 +36,23 @@ class TenantService {
     }
 
     final now = DateTime.now();
+    final normalisedNi = niNumber.toUpperCase().replaceAll(' ', '');
+
+    final db = await DatabaseService.instance.database;
+    final existing = await db.query(
+      'tenants',
+      where: 'ni_number = ?',
+      whereArgs: [normalisedNi],
+      limit: 1,
+    );
+    if (existing.isNotEmpty) {
+      throw StateError(
+          'A tenant with NI number $normalisedNi already exists.');
+    }
+
     final tenant = TenantModel(
       id: 'tenant-${_uuid.v4()}',
-      niNumber: niNumber.toUpperCase().replaceAll(' ', ''),
+      niNumber: normalisedNi,
       fullName: fullName.trim(),
       email: email.trim().toLowerCase(),
       phone: phone.trim(),
@@ -53,7 +67,6 @@ class TenantService {
       updatedAt: now,
     );
 
-    final db = await DatabaseService.instance.database;
     await db.insert('tenants', tenant.toMap());
     return tenant;
   }

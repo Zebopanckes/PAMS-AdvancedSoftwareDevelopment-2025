@@ -5,6 +5,7 @@
 import 'package:flutter/material.dart';
 import '../../../../core/models/apartment_model.dart';
 import '../../../../core/services/apartment_service.dart';
+import '../../../../core/services/city_service.dart';
 
 class ApartmentFormScreen extends StatefulWidget {
   final ApartmentModel? existing;
@@ -31,6 +32,7 @@ class _ApartmentFormScreenState extends State<ApartmentFormScreen> {
   String _type = 'Studio';
   ApartmentStatus _status = ApartmentStatus.vacant;
   bool _saving = false;
+  List<String> _cities = const ['Bristol', 'Cardiff', 'London', 'Manchester'];
 
   @override
   void initState() {
@@ -49,6 +51,13 @@ class _ApartmentFormScreenState extends State<ApartmentFormScreen> {
       _type = a.type;
       _status = a.status;
     }
+    CityService().list().then((list) {
+      if (!mounted || list.isEmpty) return;
+      setState(() {
+        _cities = list;
+        if (!_cities.contains(_city)) _city = _cities.first;
+      });
+    });
   }
 
   @override
@@ -165,15 +174,12 @@ class _ApartmentFormScreenState extends State<ApartmentFormScreen> {
               ]),
               _row([
                 DropdownButtonFormField<String>(
-                  initialValue: _city,
+                  initialValue: _cities.contains(_city) ? _city : _cities.first,
                   decoration: const InputDecoration(labelText: 'City *'),
-                  items: const [
-                    DropdownMenuItem(value: 'Bristol', child: Text('Bristol')),
-                    DropdownMenuItem(value: 'Cardiff', child: Text('Cardiff')),
-                    DropdownMenuItem(value: 'London', child: Text('London')),
-                    DropdownMenuItem(
-                        value: 'Manchester', child: Text('Manchester')),
-                  ],
+                  items: _cities
+                      .map((c) =>
+                          DropdownMenuItem(value: c, child: Text(c)))
+                      .toList(),
                   onChanged: (v) => setState(() => _city = v ?? _city),
                 ),
                 DropdownButtonFormField<String>(

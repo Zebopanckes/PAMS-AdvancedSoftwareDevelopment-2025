@@ -70,6 +70,7 @@ class Rbac {
       Permission.manageComplaints,
       Permission.manageUsers,
       Permission.viewReports,
+      Permission.expandBusiness,
     },
     UserRole.manager: {
       Permission.viewTenants,
