@@ -1,4 +1,5 @@
-// Author: PAMS Development Team
+// Author: Alec Brothwood (23076824) - Project Manager
+// Author: Saynab Saleh (23000156) - System Analyst
 // File: invoice_model.dart
 // Purpose: Billing invoice issued against a lease.
 

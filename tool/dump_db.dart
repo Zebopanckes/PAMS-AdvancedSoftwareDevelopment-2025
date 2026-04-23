@@ -1,4 +1,5 @@
-// Author: PAMS Development Team
+// Author: Alec Brothwood (23076824) - Project Manager
+// Author: Okan Kaynak (23035729) - Quality & Documentation Specialist
 // File: tool/dump_db.dart
 // Purpose: Produce a SQL dump (schema + INSERT statements) of the runtime
 // SQLite database used by PAMS, for submission as a database dump file.

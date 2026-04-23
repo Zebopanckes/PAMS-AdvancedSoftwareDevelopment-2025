@@ -1,4 +1,5 @@
-// Author: PAMS Development Team
+// Author: Alec Brothwood (23076824) - Project Manager
+// Author: Douaa Tadli (23012698) - Backend Developer
 // File: city_service.dart
 // Purpose: Managed list of cities in which PAMS operates. Enables the manager
 // role to expand the business into new cities (per PAMS spec).

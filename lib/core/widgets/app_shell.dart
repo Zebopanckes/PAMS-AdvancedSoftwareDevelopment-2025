@@ -1,4 +1,5 @@
-// Author: PAMS Development Team
+// Author: Alec Brothwood (23076824) - Project Manager
+// Author: Ashley Shoniwa (24021297) - Frontend Developer
 // File: app_shell.dart
 // Purpose: Common scaffold with side navigation for all authenticated pages.
 

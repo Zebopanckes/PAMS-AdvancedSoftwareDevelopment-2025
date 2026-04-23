@@ -1,4 +1,5 @@
-// Author: PAMS Development Team
+// Author: Alec Brothwood (23076824) - Project Manager
+// Author: Douaa Tadli (23012698) - Backend Developer
 // File: billing_service.dart
 // Purpose: Invoices + Payments. Handles the billing lifecycle emulation.
 

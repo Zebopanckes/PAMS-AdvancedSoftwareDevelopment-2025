@@ -1,4 +1,5 @@
-// Author: PAMS Development Team
+// Author: Alec Brothwood (23076824) - Project Manager
+// Author: Ashley Shoniwa (24021297) - Frontend Developer
 // File: tenant_detail_screen.dart
 // Purpose: Show full tenant record with lease, payments, maintenance and
 // complaint history. Supports edit/early-termination.

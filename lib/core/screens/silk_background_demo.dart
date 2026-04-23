@@ -1,3 +1,7 @@
+// Author: Alec Brothwood (23076824) - Project Manager
+// Author: Ashley Shoniwa (24021297) - Frontend Developer
+// File: silk_background_demo.dart
+
 import 'package:flutter/material.dart';
 import '../widgets/silk_background.dart';
 

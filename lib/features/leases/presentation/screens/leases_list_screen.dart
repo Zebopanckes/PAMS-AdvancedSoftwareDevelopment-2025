@@ -1,4 +1,5 @@
-// Author: PAMS Development Team
+// Author: Alec Brothwood (23076824) - Project Manager
+// Author: Ashley Shoniwa (24021297) - Frontend Developer
 // File: leases_list_screen.dart
 // Purpose: List leases with filter for active/expiring + creation action.
 

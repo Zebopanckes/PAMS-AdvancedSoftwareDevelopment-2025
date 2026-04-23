@@ -1,3 +1,7 @@
+// Author: Alec Brothwood (23076824) - Project Manager
+// Author: Okan Kaynak (23035729) - Quality & Documentation Specialist
+// File: domain_test.dart
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:pams/core/models/lease_model.dart';
 import 'package:pams/core/models/tenant_model.dart';

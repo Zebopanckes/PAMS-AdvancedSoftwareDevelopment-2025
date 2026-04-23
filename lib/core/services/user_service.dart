@@ -1,4 +1,5 @@
-// Author: PAMS Development Team
+// Author: Alec Brothwood (23076824) - Project Manager
+// Author: Douaa Tadli (23012698) - Backend Developer
 // File: user_service.dart
 // Purpose: Manage staff/user accounts (admin responsibility).
 

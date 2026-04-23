@@ -1,4 +1,5 @@
-// Author: PAMS Development Team
+// Author: Alec Brothwood (23076824) - Project Manager
+// Author: Ashley Shoniwa (24021297) - Frontend Developer
 // File: lease_form_screen.dart
 // Purpose: Create a new lease agreement (tenant x apartment).
 

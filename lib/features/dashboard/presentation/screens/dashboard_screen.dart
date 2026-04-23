@@ -1,4 +1,5 @@
-// Author: PAMS Development Team
+// Author: Alec Brothwood (23076824) - Project Manager
+// Author: Ashley Shoniwa (24021297) - Frontend Developer
 // File: dashboard_screen.dart
 // Purpose: Landing page with live KPIs and role-aware quick actions.
 

@@ -1,3 +1,7 @@
+// Author: Alec Brothwood (23076824) - Project Manager
+// Author: Saynab Saleh (23000156) - System Analyst
+// File: app_theme.dart
+
 import 'package:flutter/material.dart';
 
 class AppTheme {

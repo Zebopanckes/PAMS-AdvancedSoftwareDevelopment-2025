@@ -1,4 +1,4 @@
-// Author: PAMS Development Team
+// Author: Alec Brothwood (23076824) - Project Manager
 // File: main.dart
 // Purpose: Application entry point. Initialises database and seed data, then
 // launches the Flutter desktop UI.

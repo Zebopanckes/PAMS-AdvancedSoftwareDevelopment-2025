@@ -1,4 +1,5 @@
-// Author: PAMS Development Team
+// Author: Alec Brothwood (23076824) - Project Manager
+// Author: Saynab Saleh (23000156) - System Analyst
 // File: maintenance_model.dart
 // Purpose: A maintenance request logged by the front-desk/tenant and actioned
 // by maintenance staff.

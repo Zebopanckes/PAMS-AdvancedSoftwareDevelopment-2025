@@ -1,3 +1,7 @@
+// Author: Alec Brothwood (23076824) - Project Manager
+// Author: Ashley Shoniwa (24021297) - Frontend Developer
+// File: silk_background.dart
+
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
 
