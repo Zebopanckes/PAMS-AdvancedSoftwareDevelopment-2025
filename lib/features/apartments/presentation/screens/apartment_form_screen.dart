@@ -1,5 +1,6 @@
 // Author: Alec Brothwood (23076824) - Project Manager
 // Author: Ashley Shoniwa (24021297) - Frontend Developer
+// Author: Saynab Saleh (23000156) - System Analyst
 // File: apartment_form_screen.dart
 // Purpose: Add or edit an apartment.
 

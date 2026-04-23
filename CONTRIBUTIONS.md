@@ -27,6 +27,23 @@ analysis of the system).
 - [lib/core/routes/app_routes.dart](lib/core/routes/app_routes.dart)
 - [lib/core/theme/app_theme.dart](lib/core/theme/app_theme.dart)
 
+**Shared work on feature screens (with Ashley)**
+
+These UI screens are tightly bound to the domain models Saynab designed,
+so she also reviewed and contributed to their implementation.
+
+- [lib/features/tenants/presentation/screens/tenants_list_screen.dart](lib/features/tenants/presentation/screens/tenants_list_screen.dart)
+- [lib/features/apartments/presentation/screens/apartment_form_screen.dart](lib/features/apartments/presentation/screens/apartment_form_screen.dart)
+- [lib/features/leases/presentation/screens/lease_form_screen.dart](lib/features/leases/presentation/screens/lease_form_screen.dart)
+- [lib/features/users/presentation/screens/users_list_screen.dart](lib/features/users/presentation/screens/users_list_screen.dart)
+- [lib/features/cities/presentation/screens/cities_list_screen.dart](lib/features/cities/presentation/screens/cities_list_screen.dart)
+- [lib/features/dashboard/presentation/screens/dashboard_screen.dart](lib/features/dashboard/presentation/screens/dashboard_screen.dart)
+
+**Shared work on services (with Douaa)**
+
+- [lib/core/services/report_service.dart](lib/core/services/report_service.dart)
+- [lib/core/services/billing_service.dart](lib/core/services/billing_service.dart)
+
 ---
 
 ## Douaa Tadli (23012698) - Backend Developer
@@ -120,3 +137,18 @@ tool used to produce evidence artefacts.
 **Tooling (`tool/`)**
 
 - [dump_db.dart](tool/dump_db.dart)
+
+**Shared work on feature screens (with Ashley)**
+
+Screens Okan exercised heavily during test / QA passes and contributed
+fixes and validation to.
+
+- [lib/features/auth/presentation/screens/login_screen.dart](lib/features/auth/presentation/screens/login_screen.dart)
+- [lib/features/payments/presentation/screens/billing_screen.dart](lib/features/payments/presentation/screens/billing_screen.dart)
+- [lib/features/maintenance/presentation/screens/maintenance_list_screen.dart](lib/features/maintenance/presentation/screens/maintenance_list_screen.dart)
+- [lib/features/reports/presentation/screens/reports_screen.dart](lib/features/reports/presentation/screens/reports_screen.dart)
+- [lib/features/complaints/presentation/screens/complaints_list_screen.dart](lib/features/complaints/presentation/screens/complaints_list_screen.dart)
+
+**Shared work on services (with Douaa)**
+
+- [lib/core/services/auth_service.dart](lib/core/services/auth_service.dart)

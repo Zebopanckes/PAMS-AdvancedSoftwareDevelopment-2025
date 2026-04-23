@@ -1,5 +1,6 @@
 // Author: Alec Brothwood (23076824) - Project Manager
 // Author: Ashley Shoniwa (24021297) - Frontend Developer
+// Author: Okan Kaynak (23035729) - Quality & Documentation Specialist
 // File: maintenance_list_screen.dart
 // Purpose: Lifecycle board for maintenance requests.
 

@@ -1,5 +1,6 @@
 // Author: Alec Brothwood (23076824) - Project Manager
 // Author: Ashley Shoniwa (24021297) - Frontend Developer
+// Author: Saynab Saleh (23000156) - System Analyst
 // File: lease_form_screen.dart
 // Purpose: Create a new lease agreement (tenant x apartment).
 

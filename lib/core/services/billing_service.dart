@@ -1,5 +1,6 @@
 // Author: Alec Brothwood (23076824) - Project Manager
 // Author: Douaa Tadli (23012698) - Backend Developer
+// Author: Saynab Saleh (23000156) - System Analyst
 // File: billing_service.dart
 // Purpose: Invoices + Payments. Handles the billing lifecycle emulation.
 

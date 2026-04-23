@@ -1,5 +1,6 @@
 // Author: Alec Brothwood (23076824) - Project Manager
 // Author: Ashley Shoniwa (24021297) - Frontend Developer
+// Author: Saynab Saleh (23000156) - System Analyst
 // File: cities_list_screen.dart
 // Purpose: Manager/admin screen for listing and adding cities the business
 // operates in. Implements the PAMS spec requirement that a manager can

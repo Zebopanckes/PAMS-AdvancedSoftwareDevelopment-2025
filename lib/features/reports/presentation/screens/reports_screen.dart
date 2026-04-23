@@ -1,5 +1,6 @@
 // Author: Alec Brothwood (23076824) - Project Manager
 // Author: Ashley Shoniwa (24021297) - Frontend Developer
+// Author: Okan Kaynak (23035729) - Quality & Documentation Specialist
 // File: reports_screen.dart
 // Purpose: Occupancy, financial and maintenance reports across cities.
 
